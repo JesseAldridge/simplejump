@@ -15,7 +15,7 @@ Then, add the following to your `.bashrc` (or `.bash_profile` on OS X) and resta
     . ~/simplejump/rebind_cd.sh
 
 
-Now after you cd to a directory you can jump back to it with `z <partial name>`.
+Now, after you cd to a directory you can jump back to it with `z <partial name>`.
 
 Example:
 
