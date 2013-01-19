@@ -23,7 +23,7 @@ path_to_dir = lib.read_frecency_db()
 
 # increment target dir
 
-target_path = os.path.join(*sys.argv[1:])
+target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
 path_to_dir[target_path].count += 1
 path_to_dir[target_path].path = target_path
 
