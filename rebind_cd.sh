@@ -1,11 +1,11 @@
 
-# overwrite cd to write to file first
+# overwrite `cd` to write to frecency db first
 
 function cd { 
-    ~/Dropbox/simplejump/on_cd.py `pwd` "$@"
+    ~/simplejump/on_cd.py `pwd` "$@"
     builtin cd "$@"
 }
 
 function z {
-    builtin cd `~/Dropbox/simplejump/jump.py "$@"`
+    builtin cd `~/simplejump/jump.py "$@"`
 }
