@@ -10,7 +10,7 @@ To install, first do:
     git clone git@github.com:JesseAldridge/simplejump.git
 
 
-Then, add the following to your `.bashrc` (or `.bash_profile` on OS X):
+Then, add the following to your `.bashrc` (or `.bash_profile` on OS X) and restart your shell:
 
     . ~/simplejump/rebind_cd.sh
 
