@@ -13,7 +13,7 @@ def read_frecency_db():
                 line.split(' ', 2) if line else [0, time.time(), None])
             self.count = int(self.count)
             delta = (time.time() - float(self.timestamp)) * .001
-            self.frecency = float(self.count) / delta
+            self.frecency = float(self.count) / delta if delta > 0 else float(self.count)
         def __repr__(self):
             return '{0} {1} {2}'.format(self.count, self.timestamp, self.path)
 
