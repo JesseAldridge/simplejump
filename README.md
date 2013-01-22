@@ -7,7 +7,7 @@ z (https://github.com/rupa/z) wasn't working for me, so I made my own simplified
 To install, first do:
 
     cd ~
-    git clone git@github.com:JesseAldridge/simplejump.git
+    git clone git://github.com/JesseAldridge/simplejump.git
 
 
 Then, add the following to your `.bashrc` (or `.bash_profile` on OS X) and restart your shell:
