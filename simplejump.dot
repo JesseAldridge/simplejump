@@ -1,0 +1,11 @@
+digraph G {
+    "bash_part.sh" -> "on_cd.py" [label="on cd"]
+    "on_cd.py" -> "simplejump.txt" [label="writes to"]
+    "bash_part.sh" -> "jump.py" [label="z <string>"]
+    "jump.py" -> "match" [label="jumps to"]
+    "jump.py" -> "lib.py" [label="db info"]
+    "on_cd.py" -> "lib.py" [label="db info"]
+    "lib.py" -> "simplejump.txt" [label="reads"]
+    "lib.py" -> "directory" [label="calculates frecency of many"]
+    "directory" -> "match" [label="one of them is best"]
+}

@@ -16,10 +16,20 @@ import lib
 
 # ----------
 
+# Print the most frecent dir matching the query.
+
 if sys.argv[-1] in ['..']:
     sys.exit()
 
 path_to_dir = lib.read_frecency_db()
+
+for _, dir_ in sorted(
+    path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
+    if sys.argv[-1].lower() in os.path.basename(dir_.path).lower():
+        if os.path.exists(dir_.path):
+            print dir_.path
+            break
+
 for _, dir_ in sorted(
     path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
     if sys.argv[-1].lower() in dir_.path.lower():
