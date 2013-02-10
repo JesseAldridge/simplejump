@@ -2,6 +2,8 @@ import os
 import collections
 import time
 
+import frecency
+
 db_path = os.path.expanduser('~/simplejump.txt')
 
 def read_frecency_db():
@@ -12,8 +14,7 @@ def read_frecency_db():
             self.count, self.timestamp, self.path = (
                 line.split(' ', 2) if line else [0, time.time(), None])
             self.count = int(self.count)
-            delta = (time.time() - float(self.timestamp)) * .001
-            self.frecency = float(self.count) / delta if delta > 0 else float(self.count)
+            self.frecency = frecency.frecency(self.count, self.timestamp)
         def __repr__(self):
             return '{0} {1} {2}'.format(self.count, self.timestamp, self.path)
 
