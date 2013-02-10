@@ -12,7 +12,7 @@ To install, first do:
 
 Then, add the following to your `.bashrc` (or `.bash_profile` on OS X) and restart your shell:
 
-    . ~/simplejump/rebind_cd.sh
+    . ~/simplejump/bash_part.sh
 
 
 Now, after you cd to a directory you can jump back to it with `z <partial name>`.
