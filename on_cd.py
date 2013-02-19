@@ -27,6 +27,8 @@ target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
 path_to_dir[target_path].count += 1
 path_to_dir[target_path].path = target_path
 
+# print 'target_path: {0}'.format(target_path)
+
 # write new frecency db
 
 with open(lib.db_path, 'w') as f:

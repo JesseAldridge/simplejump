@@ -1,7 +1,10 @@
 
 # overwrite `cd` to write to frecency db first
 
+# echo shell part
+
 function cd { 
+    # echo overridden cd
     ~/simplejump/on_cd.py `pwd` "$@"
     builtin cd "$@"
 }
