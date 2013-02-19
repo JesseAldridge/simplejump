@@ -26,3 +26,5 @@ Example:
     $ z ba
     $ pwd
     /Users/jessealdridge2/foo/bar/baz
+
+Inspired by z (https://github.com/rupa/z).
