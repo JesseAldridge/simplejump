@@ -27,19 +27,17 @@ def main():
 
     path_to_dir = lib.read_frecency_db()
 
-    for _, dir_ in sorted(
-        path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
-        if sys.argv[-1].lower() in os.path.basename(dir_.path).lower():
-            if os.path.exists(dir_.path):
-                print dir_.path
-                return
+    def jump(path_transform):
+        for _, dir_ in sorted(
+            path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
+            if sys.argv[-1].lower() in path_transform(dir_.path).lower():
+                if os.path.exists(dir_.path):
+                    print dir_.path
+                    return True
 
-    for _, dir_ in sorted(
-        path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
-        if sys.argv[-1].lower() in dir_.path.lower():
-            if os.path.exists(dir_.path):
-                print dir_.path
-                return
+    for transform in [lambda path: os.path.basename(path), lambda path: path]:
+        if jump(transform):
+            return
 
 if __name__ == '__main__':
     main()
