@@ -2,23 +2,21 @@ import os
 import collections
 import time
 
-import frecency
-
 db_path = os.path.expanduser('~/simplejump.txt')
 
 def read_frecency_db():
-    # Calculate freceny for each Dir.
+    ' Read frecency db.  Return mapping from paths to Dirs. '
 
     class Dir:
+        ' Calculate frecency for each Dir. '
+
         def __init__(self, line=None):
             self.count, self.timestamp, self.path = (
                 line.split(' ', 2) if line else [0, time.time(), None])
             self.count = int(self.count)
-            self.frecency = frecency.frecency(self.count, self.timestamp)
+            self.frecency = frecency(self.count, self.timestamp)
         def __repr__(self):
             return '{0} {1} {2}'.format(self.count, self.timestamp, self.path)
-
-    # Read frecency db.  Return mapping from paths to Dirs.
 
     if not os.path.exists(db_path):
         with open(db_path, 'w'):
@@ -30,9 +28,28 @@ def read_frecency_db():
             path_to_dir[dir_.path] = dir_
     return path_to_dir
 
+
+def frecency(count, timestamp):
+    delta = (time.time() - float(timestamp)) * .00001
+    result = count - delta
+    # print 'count:', count
+    # print 'timestamp:', timestamp
+    # print 'result:', result
+    # print
+    return result
+
+
 if __name__ == '__main__':
     path_to_dir = read_frecency_db()
-    print 'path_to_dir:', path_to_dir.items()
     for path, dir_ in sorted(
-        path_to_dir.items(), key=lambda t: t[-1].frecency):
+        path_to_dir.items(), key=lambda t: t[-1].frecency)[:10]:
         print path, dir_.frecency
+
+    desired_order = [
+        [7, 1360338356.34], [8, 1360099202.01], [5, 1360338356.34]]
+    actual_order = sorted(
+        desired_order, key=lambda l: frecency(*l), reverse=True)
+
+    print 'desired:', desired_order
+    print 'actual:', actual_order
+    assert desired_order == actual_order
