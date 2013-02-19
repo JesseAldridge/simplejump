@@ -29,4 +29,4 @@ Example:
 
 [rvm](https://rvm.io/) causes problems with this.  Not sure why.
 
-Inspired by z (https://github.com/rupa/z).
+This project is a clone of z (https://github.com/rupa/z).
