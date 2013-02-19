@@ -2,6 +2,7 @@
 
 import sys
 import os
+import logging
 
 import lib
 
@@ -18,21 +19,27 @@ import lib
 
 # Print the most frecent dir matching the query.
 
-if sys.argv[-1] in ['..']:
-    sys.exit()
+def main():
+    # logging.info('sys.argv: {0}'.format(sys.argv))
 
-path_to_dir = lib.read_frecency_db()
+    if sys.argv[-1] in ['..']:
+        sys.exit()
 
-for _, dir_ in sorted(
-    path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
-    if sys.argv[-1].lower() in os.path.basename(dir_.path).lower():
-        if os.path.exists(dir_.path):
-            print dir_.path
-            break
+    path_to_dir = lib.read_frecency_db()
 
-for _, dir_ in sorted(
-    path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
-    if sys.argv[-1].lower() in dir_.path.lower():
-        if os.path.exists(dir_.path):
-            print dir_.path
-            break
+    for _, dir_ in sorted(
+        path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
+        if sys.argv[-1].lower() in os.path.basename(dir_.path).lower():
+            if os.path.exists(dir_.path):
+                print dir_.path
+                return
+
+    for _, dir_ in sorted(
+        path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
+        if sys.argv[-1].lower() in dir_.path.lower():
+            if os.path.exists(dir_.path):
+                print dir_.path
+                return
+
+if __name__ == '__main__':
+    main()
