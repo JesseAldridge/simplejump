@@ -3,9 +3,9 @@ digraph G {
     "on_cd.py" -> "simplejump.txt" [label="writes to"]
     "shell_part.sh" -> "jump.py" [label="z <string>"]
     "jump.py" -> "match" [label="jumps to"]
-    "jump.py" -> "lib.py" [label="db info"]
-    "on_cd.py" -> "lib.py" [label="db info"]
-    "lib.py" -> "simplejump.txt" [label="reads"]
-    "lib.py" -> "directory" [label="calculates frecency of many"]
+    "jump.py" -> "utils.py" [label="db info"]
+    "on_cd.py" -> "utils.py" [label="db info"]
+    "utils.py" -> "simplejump.txt" [label="reads"]
+    "utils.py" -> "directory" [label="calculates frecency of many"]
     "directory" -> "match" [label="one of them is best"]
 }

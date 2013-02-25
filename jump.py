@@ -4,7 +4,7 @@ import sys
 import os
 import logging
 
-import lib
+import utils
 
 # ----------
 
@@ -22,22 +22,17 @@ import lib
 def main():
     # logging.info('sys.argv: {0}'.format(sys.argv))
 
-    if sys.argv[-1] in ['..']:
+    query = sys.argv[-1]
+    if query in ['..']:
         sys.exit()
 
-    path_to_dir = lib.read_frecency_db()
+    path_to_dir = utils.read_and_boost(query)
 
-    def jump(path_transform):
-        for _, dir_ in sorted(
-            path_to_dir.items(), key=lambda t: t[-1].frecency, reverse=True):
-            if sys.argv[-1].lower() in path_transform(dir_.path).lower():
-                if os.path.exists(dir_.path):
-                    print dir_.path
-                    return True
-
-    for transform in [lambda path: os.path.basename(path), lambda path: path]:
-        if jump(transform):
-            return
+    for dir_ in sorted(
+        path_to_dir.values(), key=lambda dir_: dir_.score, reverse=True):
+        if os.path.isdir(dir_.path):
+            print dir_.path
+            return True
 
 if __name__ == '__main__':
     main()

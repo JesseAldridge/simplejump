@@ -3,7 +3,7 @@
 import sys
 import os
 
-import lib
+import utils
 
 # ----------
 
@@ -19,7 +19,7 @@ import lib
 if sys.argv[-1] in ['..', '-']:
     sys.exit()
 
-path_to_dir = lib.read_frecency_db()
+path_to_dir = utils.read_frecency_db()
 
 # increment target dir
 
@@ -31,5 +31,6 @@ path_to_dir[target_path].path = target_path
 
 # write new frecency db
 
-with open(lib.db_path, 'w') as f:
-    f.write('\n'.join([repr(dir_) for path, dir_ in path_to_dir.items()]))
+with open(utils.DB_PATH, 'w') as f:
+    f.write('\n'.join([
+        dir_.serialize() for path, dir_ in path_to_dir.items()]))
