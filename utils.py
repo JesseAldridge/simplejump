@@ -2,6 +2,7 @@ import os
 import collections
 import time
 import datetime
+import sys
 
 DB_PATH = os.path.expanduser('~/sj_db.txt')
 
@@ -46,12 +47,15 @@ def read_and_boost(query, db_path=DB_PATH):
             
 
 def boost(query, dir_):
+    boost = 0
     if query in os.path.basename(dir_.path):
-        dir_.score += dir_.count * 1.6
+        boost = 3.
     elif query.lower() in os.path.basename(dir_.path).lower():
-        dir_.score += dir_.count * 1.2
+        boost = 2.
     elif query in dir_.path:
-        dir_.score += dir_.count * 1.1
+        boost = 1.
+    dir_.boost = boost
+    dir_.score += dir_.count * boost
 
 def frecency(count, timestamp):
     ' Take into account frequency and recency. '
@@ -64,26 +68,23 @@ def frecency(count, timestamp):
 if __name__ == '__main__':
     read_and_boost('Impact')
 
-    dir_a = Dir('5 1359475780.28 /home/zenoss/dev/zenpacks/'
-                'ZenPacks.zenoss.Impact/ZenPacks/zenoss/Impact')
-    boost('Impact', dir_a)
-    dir_b = Dir('2 1361567913.72 /home/zenoss/test_impact')
-    boost('Impact', dir_b)
-    print 'scores:', dir_a.score, dir_b.score
-
     for query, desired_order in [
-        ('impact', ['impact', 'Impact', 'a', 'b']),
-        ('Impact', ['Impact', 'impact', 'a', 'b'])]:
+        ('impact', ['a', 'test_impact', 'Impact', 'b']),
+        ('Impact', ['Impact', 'test_impact', 'a', 'b'])]:
         path_to_dir = read_and_boost(query, 'test_db.txt')
-        actual_order = [os.path.basename(d.path) for d in 
-                        sorted(path_to_dir.values(), 
-                               key=lambda d: d.score, reverse=True)]
-        print 'query:', query
+        dirs = sorted(path_to_dir.values(), 
+                      key=lambda d: d.score, reverse=True)
+        actual_order = [os.path.basename(d.path) for d in dirs]
         print 'desired:', desired_order
+        print
+        print 'query:', query
         print 'actual:', actual_order
+        print 'timedeltas:', [
+            str(datetime.timedelta(seconds=time.time()) - 
+                datetime.timedelta(seconds=dir_.timestamp)).split(',', 1)[0]
+            for dir_ in dirs]
+        print 'counts:', [dir_.count for dir_ in dirs]
+        print 'boosts:', [dir_.boost for dir_ in dirs]
+        print 'scores:', [int(dir_.score) for dir_ in dirs]
+        sys.stdout.flush()
         assert desired_order == actual_order
-
-    print 'timedeltas:', [
-        str(datetime.timedelta(seconds=time.time()) - 
-         datetime.timedelta(seconds=dir_.timestamp)) 
-        for dir_ in path_to_dir.values()]
