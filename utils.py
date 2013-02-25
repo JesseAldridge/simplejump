@@ -1,4 +1,5 @@
 import os
+import collections
 import time
 
 DB_PATH = os.path.expanduser('~/sj_db.txt')
@@ -27,7 +28,7 @@ def read_frecency_db(db_path=DB_PATH):
             pass
 
     with open(db_path, 'r') as f:
-        path_to_dir = {}
+        path_to_dir = collections.defaultdict(Dir)
         for line in f.read().splitlines():
             dir_ = Dir(line)
             path_to_dir[dir_.path] = dir_
