@@ -36,13 +36,15 @@ def read_frecency_db(db_path=DB_PATH):
     return path_to_dir
 
 def read_and_boost(query, db_path=DB_PATH):
-    ' Boost dirs with a path that case-sensitive matches query. '
+    ' Boost dirs with a path that case-sensitive matches query. '  
 
     path_to_dir = read_frecency_db(db_path)
     for dir_ in path_to_dir.values():
-        if query in dir_.path:
-            dir_.score += dir_.count * 1.2
-        if query in os.path.basename(dir_.path).lower():
+        if query in os.path.basename(dir_.path):
+            dir_.score += dir_.count * 1.5
+        elif query.lower() in os.path.basename(dir_.path).lower():
+            dir_.score += dir_.count * 1.3
+        elif query in dir_.path:
             dir_.score += dir_.count * 1.2
     return path_to_dir
             
