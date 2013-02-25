@@ -11,7 +11,7 @@ if sys.argv[-1] in ['..', '-']:
     sys.exit()
 
 path_to_dir = utils.read_frecency_db()
-target_path = os.path.abspath(' '.join(sys.argv[1:]))
+target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
 path_to_dir[target_path].count += 1
 path_to_dir[target_path].path = target_path
 
