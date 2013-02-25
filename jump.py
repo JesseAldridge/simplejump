@@ -17,4 +17,4 @@ for dir_ in sorted(
     path_to_dir.values(), key=lambda dir_: dir_.score, reverse=True):
     if os.path.isdir(dir_.path):
         print dir_.path
-        return True
+        break
