@@ -60,10 +60,7 @@ def frecency(count, timestamp):
 
 
 if __name__ == '__main__':
-    path_to_dir = read_and_boost('Impact')
-    for path, dir_ in sorted(
-        path_to_dir.items(), key=lambda t: t[-1].score)[:10]:
-        print path, dir_.score
+    read_and_boost('Impact')
 
     for query, desired_order in [
         ('impact', ['impact', 'a', 'Impact', 'b']),

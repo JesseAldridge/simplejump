@@ -6,17 +6,6 @@ import logging
 
 import utils
 
-# ----------
-
-# sys.argv: ['.../on_cd.py', pwd, target_dir]
-
-# db format
-# <count> <time> <path>
-# 2 1358624598.17 ~/foo/bar
-# 1 1358624611.5 ~/foo/bar/baz
-
-# ----------
-
 # Print the most frecent dir matching the query.
 
 def main():
