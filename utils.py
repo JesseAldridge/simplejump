@@ -52,10 +52,6 @@ def frecency(count, timestamp):
 
     delta = (time.time() - timestamp) * .00001
     result = count - delta
-    # print 'count:', count
-    # print 'timestamp:', timestamp
-    # print 'result:', result
-    # print
     return result
 
 

@@ -22,6 +22,4 @@ Example:
     $ pwd
     /Users/jessealdridge2/foo/bar/baz
 
-[rvm](https://rvm.io/) causes problems with this.  Not sure why.
-
 This project is a clone of z (https://github.com/rupa/z).
