@@ -18,3 +18,5 @@ for dir_ in sorted(
     if os.path.isdir(dir_.path) and query.lower() in dir_.path.lower():
         print dir_.path
         break
+else:
+    print '.'
