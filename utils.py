@@ -72,9 +72,7 @@ if __name__ == '__main__':
         ('impact', ['a', 'test_impact', 'Impact', 'b']),
         ('Impact', ['Impact', 'test_impact', 'a', 'b'])]:
         path_to_dir = read_and_boost(query, 'test_db.txt')
-        dirs = sorted(path_to_dir.values(), 
-                      key=lambda d: d.score, reverse=True)
-        actual_order = [os.path.basename(d.path) for d in dirs]
+        dirs = sorted(path_to_dir.values(), key=lambda d: d.score)[::-1]
         print 'query:', query
         print 'desired:', desired_order
         print 'actual:'
@@ -82,4 +80,4 @@ if __name__ == '__main__':
             dir_.print_()
         print
         sys.stdout.flush()
-        assert desired_order == actual_order
+        assert desired_order == [os.path.basename(d.path) for d in dirs]
