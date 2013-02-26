@@ -15,6 +15,7 @@ path_to_dir = utils.read_frecency_db()
 target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
 path_to_dir[target_path].count += 1
 path_to_dir[target_path].path = target_path
+path_to_dir[target_path].timestamp = time.time()
 
 with open(utils.DB_PATH, 'w') as f:
     f.write('\n'.join([
