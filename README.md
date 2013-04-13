@@ -14,12 +14,28 @@ Example:
 
     $ cd
     $ pwd
-    /Users/jessealdridge2
+    /Users/jessealdridge
     $ mkdir -p foo/bar/baz
     $ cd foo/bar/baz
     $ cd ~
     $ z ba
     $ pwd
-    /Users/jessealdridge2/foo/bar/baz
+    /Users/jessealdridge/foo/bar/baz
 
-This project is a clone of z (https://github.com/rupa/z).
+When multiple results match, simplejump guesses which directory you want based
+on the number of times you've accessed the directory, how recently you've
+accessed it, etc.
+
+You can append a number to your query to jump to the nth result.
+
+Example:
+
+    $ z d
+    $ pwd
+    /Users/jessealdridge/Desktop
+    $ z d 2
+    $ pwd
+    /Users/jessealdridge/Dropbox
+
+
+This project is mostly a clone of z (https://github.com/rupa/z).
