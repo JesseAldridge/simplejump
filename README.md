@@ -26,7 +26,7 @@ When multiple results match, simplejump guesses which directory you want based
 on the number of times you've accessed the directory, how recently you've
 accessed it, and other factors.
 
-You can append a number to your query to jump to the nth result.
+You can add a number to your query to jump to the nth result.
 
 Example:
 
