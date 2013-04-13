@@ -12,7 +12,7 @@ if sys.argv[-1] in ['..', '-']:
     sys.exit()
 
 path_to_dir = utils.read_frecency_db()
-# sys.argv ends with root dir and basename (because cd can be relative)
+# sys.argv: [<this script>, <cwd>, <target>];  get the full path
 target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
 path_to_dir[target_path].count += 1
 path_to_dir[target_path].path = target_path
