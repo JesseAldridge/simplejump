@@ -7,5 +7,5 @@ function cd {
 }
 
 function z {
-    builtin cd `~/simplejump/jump.py "$@"`
+    builtin cd "`~/simplejump/jump.py "$@"`"
 }
