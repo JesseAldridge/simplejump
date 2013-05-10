@@ -10,14 +10,15 @@ class Dir:
     ' Calculate frecency for each Dir. '
 
     def __init__(self, line=None):
-        self.count, self.timestamp, self.path = (
-            line.split(' ', 2) if line else [0, time.time(), None])
+        self.count, self.timestamp, self.path = [0, time.time(), None]
+        if line:
+            self.count, self.timestamp, self.path = line.split(' ', 2)
         self.count = int(self.count)
         self.timestamp = float(self.timestamp)
         self.score = frecency(self.count, self.timestamp)
 
     def serialize(self):
-        return '{0} {1} {2}'.format(self.count, self.timestamp, self.path)
+        return '%i %s %s' % (self.count, str(self.timestamp), self.path)
 
     def print_(self):
         print '{0:<15}| {1:<10}| count: {2}| boost: {3}| score: {4}'.format(
@@ -30,14 +31,17 @@ def read_frecency_db(db_path=DB_PATH):
     ' Read frecency db.  Return mapping from paths to Dirs. '
 
     if not os.path.exists(db_path):
-        with open(db_path, 'w'):
-            pass
+        open(db_path, 'w').close()
 
-    with open(db_path, 'r') as f:
-        path_to_dir = collections.defaultdict(Dir)
+    f = open(db_path, 'r')
+    try:
+        path_to_dir = {}
         for line in f.read().splitlines():
             dir_ = Dir(line)
-            path_to_dir[dir_.path] = dir_
+            if dir_.path not in path_to_dir:
+                path_to_dir[dir_.path] = dir_
+    finally:
+        f.close()
 
     return path_to_dir
 
