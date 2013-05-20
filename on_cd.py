@@ -12,7 +12,13 @@ if sys.argv[-1] in ['..', '-']:
     sys.exit()
 
 path_to_dir = utils.read_frecency_db()
-# sys.argv: [<this script>, <cwd>, <target>];  get the full path
+
+# sys.argv: [
+#   '/Users/jessealdridge2/simplejump/on_cd.py', 
+#   '/Users/jessealdridge2/Desktop/test, space', 'foo/']
+#
+# that's [<this script>, <cwd>, <new dir>]
+
 target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
 if target_path not in path_to_dir:
     path_to_dir[target_path] = utils.Dir()

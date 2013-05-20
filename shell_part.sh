@@ -2,7 +2,7 @@
 # overwrite `cd` to write to frecency db first
 
 function cd { 
-    ~/simplejump/on_cd.py `pwd` "$@"
+    ~/simplejump/on_cd.py "`pwd`" "$@"
     builtin cd "$@"
 }
 

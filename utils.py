@@ -73,8 +73,8 @@ if __name__ == '__main__':
     read_and_boost('Impact')
 
     for query, desired_order in [
-        ('impact', ['a', 'test_impact', 'Impact', 'b']),
-        ('Impact', ['Impact', 'test_impact', 'a', 'b'])]:
+        ('impact', ['a', 'test impact', 'Impact', 'b']),
+        ('Impact', ['Impact', 'test impact', 'a', 'b'])]:
         path_to_dir = read_and_boost(query, 'test_db.txt')
         dirs = sorted(path_to_dir.values(), key=lambda d: d.score)[::-1]
         print 'query:', query
