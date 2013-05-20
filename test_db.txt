@@ -1,4 +1,4 @@
 5 1359475780.28 /home/zenoss/dev/zenpacks/ZenPacks.zenoss.Impact/ZenPacks/zenoss/Impact
-2 1361567913.72 /home/zenoss/test_impact
+2 1361567913.72 /home/zenoss/test impact
 8 1360099202.01 /foo/bar/impact/a
 5 1360338356.35 /foo/bar/impact/b
