@@ -5,6 +5,9 @@ import os
 
 import utils
 
+if 'SIMPLE_JUMP_CD' not in os.environ:
+    sys.stderr.write('Something stole cd!\n')
+
 
 def parse_args():
     path_num = sys.argv.pop()

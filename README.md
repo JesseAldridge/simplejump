@@ -4,7 +4,7 @@ simplejump
 To install, just run: 
     `git clone git://github.com/JesseAldridge/simplejump.git ~/simplejump`
 
-Then add `. ~/simplejump/shell_part.sh` to your `.bashrc` (or `.bash_profile` on OS X) (or `.zshrc` if you're using zsh)
+Then add `source ~/simplejump/shell_part.sh` to your `.bashrc` (or `.bash_profile` on OS X) (or `.zshrc` if you're using zsh)
 
 Then restart your shell and you're done.
 
