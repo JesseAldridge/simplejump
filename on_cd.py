@@ -8,7 +8,9 @@ import utils
 
 # Ignore special cd's.  Read and increment.  Write.
 
-if sys.argv[-1] in ['..', '-']:
+if sys.argv[-1] == '..':
+    sys.argv[-1] = os.path.dirname(os.getcwd())
+if sys.argv[-1] in ['-']:
     sys.exit()
 
 path_to_dir = utils.read_frecency_db()

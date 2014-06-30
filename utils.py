@@ -52,9 +52,9 @@ def read_and_boost(query, db_path=DB_PATH):
     for dir_ in path_to_dir.values():
         boost = 0.
         if query in os.path.basename(dir_.path):
-            boost = 3.
+            boost = 4.
         elif query.lower() in os.path.basename(dir_.path).lower():
-            boost = 2.
+            boost = 3
         elif query in dir_.path:
             boost = 1.
         dir_.boost = boost
@@ -64,17 +64,21 @@ def read_and_boost(query, db_path=DB_PATH):
 def frecency(count, timestamp):
     ' Take into account frequency and recency. '
 
-    delta = (time.time() - timestamp) * .000005
-    result = count - delta
+    delta = (time.time() - timestamp) ** .4
+    result = count * 3 - delta
     return result
 
 
 if __name__ == '__main__':
+
+    # Use test db to check frecency.
+
     read_and_boost('Impact')
 
     for query, desired_order in [
-        ('impact', ['a', 'test impact', 'Impact', 'b']),
-        ('Impact', ['Impact', 'test impact', 'a', 'b'])]:
+        ('impact', ['server_h', 'server_o', 'a', 'test impact', 'Impact', 'b']),
+        ('Impact', ['server_h', 'server_o', 'Impact', 'test impact', 'a', 'b']),
+        ('server', ['server_h', 'server_o', 'a', 'test impact', 'b', 'Impact'])]:
         path_to_dir = read_and_boost(query, 'test_db.txt')
         dirs = sorted(path_to_dir.values(), key=lambda d: d.score)[::-1]
         print 'query:', query
