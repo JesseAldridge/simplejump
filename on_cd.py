@@ -10,16 +10,12 @@ import utils
 
 if sys.argv[-1] == '..':
     sys.argv[-1] = os.path.dirname(os.getcwd())
-if sys.argv[-1] in ['-']:
+if sys.argv[-1] in ['-', '.'] or len(sys.argv) == 2:
     sys.exit()
 
 path_to_dir = utils.read_frecency_db()
 
-# sys.argv: [
-#   '/Users/jessealdridge2/simplejump/on_cd.py', 
-#   '/Users/jessealdridge2/Desktop/test, space', 'foo/']
-#
-# that's [<this script>, <cwd>, <new dir>]
+# sys.argv: [<this script>, <cwd>, <new dir>]
 
 target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
 if target_path not in path_to_dir:
