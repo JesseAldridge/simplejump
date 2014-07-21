@@ -15,9 +15,10 @@ Example:
     $ cd
     $ pwd
     /Users/jessealdridge
+    
     $ mkdir -p foo/bar/baz
     $ cd foo/bar/baz
-    $ cd ~
+    $ cd
     $ z ba
     $ pwd
     /Users/jessealdridge/foo/bar/baz
