@@ -17,7 +17,8 @@ path_to_dir = utils.read_frecency_db()
 
 # sys.argv: [<this script>, <cwd>, <new dir>]
 
-target_path = os.path.abspath(os.path.join(*sys.argv[1:]))
+target_path = os.path.abspath(os.path.expanduser(os.path.join(*sys.argv[1:])))
+
 if target_path not in path_to_dir:
     path_to_dir[target_path] = utils.Dir()
 path_to_dir[target_path].count += 1
