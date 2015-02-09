@@ -5,7 +5,7 @@ import sys, os, subprocess
 import utils
 
 if 'SIMPLE_JUMP_CD' not in os.environ:
-    sys.stderr.write('Something stole cd!\n')
+    sys.stderr.write('simplejump: Something stole cd!\n')
     proc = subprocess.Popen(['type', 'cd'], stdout=subprocess.PIPE)
     sys.stderr.write(proc.stdout.read())
 
