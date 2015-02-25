@@ -1,16 +1,14 @@
 
-# overwrite `cd` to write to frecency db first
-
-function cd { 
-    export SIMPLE_JUMP_CD=1
+function d {
+    export SIMPLE_JUMP_D_CALLED=1
     ~/simplejump/on_cd.py "`pwd`" "$@"
-    builtin cd "$@"
+    pushd "$@" > /dev/null
 }
 
 function z {
 
-    # (test cd to make sure it hasn't been stolen)
-    cd .
+    # (test d to make sure it hasn't been stolen)
+    d .
 
     builtin cd "`~/simplejump/jump.py "$@"`"
 }
