@@ -7,7 +7,7 @@ function cd {
 
 function z {
 
-    # (test d to make sure it hasn't been stolen)
+    # (test cd to make sure it hasn't been stolen)
     cd .
 
     builtin cd "`~/simplejump/jump.py "$@"`"
