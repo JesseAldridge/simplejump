@@ -1,13 +1,18 @@
 #!/usr/bin/python
 
-import sys, os, subprocess
+import sys
+import os
+import subprocess
 
 import utils
 
 if 'SIMPLE_JUMP_CD_CALLED' not in os.environ:
-    sys.stderr.write('simplejump: Something stole cd!\n')
+    sys.stderr.write(
+        'simplejump: Something stole cd!\n'
+        '(Did you install rvm recently?  Try removing it from your .bash_profile.)\n')
     proc = subprocess.Popen(['type', 'cd'], stdout=subprocess.PIPE)
     sys.stderr.write(proc.stdout.read())
+
 
 def print_dir(query):
 
