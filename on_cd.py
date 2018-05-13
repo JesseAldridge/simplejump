@@ -9,7 +9,10 @@ import utils
 # Ignore special cd's.  Read and increment.  Write.
 
 if sys.argv[-1] == '..':
-    sys.argv[-1] = os.path.dirname(os.getcwd())
+    try:
+        sys.argv[-1] = os.path.dirname(os.getcwd())
+    except OSError: # if cwd has been deleted
+      sys.exit()
 if sys.argv[-1] in ['-', '.'] or len(sys.argv) == 2:
     sys.exit()
 
