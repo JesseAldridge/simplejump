@@ -1,10 +1,10 @@
 simplejump
 ==========
 
-To install, just run: 
-    `git clone git://github.com/JesseAldridge/simplejump.git ~/simplejump`
+To install, just run something like this:
+    `git clone git://github.com/JesseAldridge/simplejump.git ~/Dropbox/simplejump`
 
-Then add `source ~/simplejump/shell_part.sh` to your `.bashrc` (or `.bash_profile` on OS X) (or `.zshrc` if you're using zsh)
+Then add `source ~/Dropbox/simplejump/shell_part.sh` to your `.bash_profile` (or `.bash_rc`) (or `.zshrc` if you're using zsh)
 
 Then restart your shell and you're done.
 
@@ -15,7 +15,7 @@ Example:
     $ cd
     $ pwd
     /Users/jessealdridge
-    
+
     $ mkdir -p foo/bar/baz
     $ cd foo/bar/baz
     $ cd
