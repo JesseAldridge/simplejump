@@ -11,4 +11,5 @@ function z {
     cd .
 
     builtin cd "`~/simplejump/jump.py "$@"`"
+    open .
 }
