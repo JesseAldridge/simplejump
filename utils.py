@@ -21,11 +21,11 @@ class Dir:
     return '%i %s %s' % (self.count, str(self.timestamp), self.path)
 
   def print_(self):
-    print '{0:<15}| {1:<10}| count: {2}| boost: {3}| score: {4}'.format(
+    print('{0:<15}| {1:<10}| count: {2}| boost: {3}| score: {4}'.format(
       '...' + self.path[-12:], str(
          datetime.timedelta(seconds=time.time()) -
          datetime.timedelta(seconds=self.timestamp)).split(',', 1)[0],
-      self.count, self.boost, int(self.score))
+      self.count, self.boost, int(self.score)))
 
 def read_frecency_db(db_path=DB_PATH):
   ' Read frecency db.  Return mapping from paths to Dirs. '
@@ -81,11 +81,11 @@ if __name__ == '__main__':
     ('server', ['server_h', 'server_o', 'a', 'test impact', 'b', 'Impact'])]:
     path_to_dir = read_and_boost(query, 'test_db.txt')
     dirs = sorted(path_to_dir.values(), key=lambda d: d.score)[::-1]
-    print 'query:', query
-    print 'desired:', desired_order
-    print 'actual:'
+    print('query:', query)
+    print('desired:', desired_order)
+    print('actual:')
     for dir_ in dirs:
       dir_.print_()
-    print
+    print()
     sys.stdout.flush()
     assert desired_order == [os.path.basename(d.path) for d in dirs]

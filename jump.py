@@ -23,11 +23,11 @@ def print_dir(query):
     path_to_dir.values(), key=lambda dir_: dir_.score, reverse=True)
   for dir_ in paths:
     if os.path.isdir(dir_.path) and query.lower() in dir_.path.lower():
-      print dir_.path
+      print(dir_.path)
       break
   else:
     sys.stderr.write('no matching path found\n')
-    print '.'
+    print('.')
 
 if len(sys.argv) == 1:
   print_dir('foo', 1)
